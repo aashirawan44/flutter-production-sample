@@ -1,0 +1,75 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate.log
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configurations and tasks you actually want to
+# keep. But settings.json, extensions.json and dist/ should be ignored.
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication logging
+flutter_*.png
+flutter_*.symbol
+
+# Obfuscation symbols
+app.*.symbols
+
+# Android Studio will place its code editor settings here
+.idea/modules.xml
+.idea/workspace.xml
+.idea/libraries/
+.idea/nav_editor.xml
+.idea/assetWizardSettings.xml
+.idea/runConfigurations.xml
+.idea/caches/
+
+# Android build artifacts
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# iOS build artifacts
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/flutter_settings.xcconfig
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/.generated/
+
+# Secrets and local configurations
+.env
+.env.*
+secrets.json
+lib/firebase_options.dart
+
+# Build runner generated files (optional: keep if you want others to see them without running build_runner)
+# *.freezed.dart
+# *.g.dart

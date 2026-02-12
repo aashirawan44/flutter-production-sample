@@ -1,0 +1,19 @@
+# iOS-specific gitignore
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+xcuserdata
+*.xcworkspace
+!default.xcworkspace
+DerivedData
+build/
+*.hmap
+*.ipa
+*.pbproj.old.bak
+Pods
+.generated
+Flutter/Generated.xcconfig
+Flutter/flutter_export_environment.sh
+Flutter/flutter_settings.xcconfig
+Flutter/ephemeral/

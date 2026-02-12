@@ -1,0 +1,21 @@
+# Android-specific gitignore
+gradlew
+gradlew.bat
+local.properties
+*.iml
+.idea
+.gradle
+gradle
+build/
+captures/
+.externalNativeBuild
+.cxx
+executionHistory.bin
+buildOutputCleanup/
+*.keystore
+!debug.keystore
+*.jks
+*.properties
+!gradle.properties
+# Don't ignore the wrapper itself, just the jar
+!gradle/wrapper/gradle-wrapper.jar
