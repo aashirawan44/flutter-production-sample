@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/providers/auth_providers.dart';
@@ -9,10 +10,11 @@ import '../../features/posts/presentation/screens/post_detail_screen.dart';
 import '../../features/posts/presentation/screens/post_list_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final authState = ref.watch(authProvider);
+  final refreshNotifier = ref.watch(routerRefreshNotifierProvider);
 
   return GoRouter(
     initialLocation: '/splash',
+    refreshListenable: refreshNotifier,
     routes: [
       GoRoute(
         path: '/splash',
@@ -34,21 +36,55 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
     redirect: (context, state) {
-      final isSplash = state.matchedLocation == '/splash';
-      final isLogin = state.matchedLocation == '/login';
+      final authState = ref.read(authProvider);
+      final location = state.matchedLocation;
 
-      if (authState is AuthInitial) return isSplash ? null : '/splash';
-      if (authState is AuthLoading) return isSplash ? null : '/splash';
+      final isSplash = location == '/splash';
+      final isLogin = location == '/login';
 
-      if (authState is AuthAuthenticated) {
-        if (isSplash || isLogin) return '/';
+      // Initial state → Splash
+      if (authState is AuthInitial) {
+        return isSplash ? null : '/splash';
       }
 
+      // Loading → Stay on splash/login only
+      if (authState is AuthLoading) {
+        if (isSplash || isLogin) return null;
+        return '/splash';
+      }
+
+      // Authenticated → Block splash/login
+      if (authState is AuthAuthenticated) {
+        if (isSplash || isLogin) return '/';
+        return null;
+      }
+
+      // Unauthenticated → Force login
       if (authState is AuthUnauthenticated) {
-        if (!isLogin) return '/login';
+        return isLogin ? null : '/login';
       }
 
       return null;
     },
+
+
   );
 });
+
+
+final routerRefreshNotifierProvider = Provider<RouterRefreshNotifier>((ref) {
+  final notifier = RouterRefreshNotifier(ref);
+  ref.onDispose(notifier.dispose);
+  return notifier;
+});
+
+class RouterRefreshNotifier extends ChangeNotifier {
+  RouterRefreshNotifier(this.ref) {
+    ref.listen(authProvider, (_, __) {
+      notifyListeners();
+    });
+  }
+
+  final Ref ref;
+}
+

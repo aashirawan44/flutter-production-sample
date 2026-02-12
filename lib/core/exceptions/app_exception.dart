@@ -10,24 +10,21 @@ abstract class AppException implements Exception {
 }
 
 class NetworkException extends AppException {
-  NetworkException([String message = 'Network connection error', String? code])
-    : super(message, code);
+  NetworkException([super.message = 'Network connection error', super.code]);
 }
 
 class ServerException extends AppException {
-  ServerException([String message = 'Server error occurred', String? code])
-    : super(message, code);
+  ServerException([super.message = 'Server error occurred', super.code]);
 }
 
 class CacheException extends AppException {
-  CacheException([String message = 'Cache error occurred']) : super(message);
+  CacheException([super.message = 'Cache error occurred']);
 }
 
 class AuthException extends AppException {
-  AuthException([String message = 'Authentication failed', String? code])
-    : super(message, code);
+  AuthException([super.message = 'Authentication failed', super.code]);
 }
 
 class ValidationException extends AppException {
-  ValidationException([String message = 'Validation failed']) : super(message);
+  ValidationException([super.message = 'Validation failed']);
 }
