@@ -1,4 +1,3 @@
-import '../../../../core/exceptions/app_exception.dart';
 import '../models/post_model.dart';
 
 abstract class PostRemoteDataSource {
